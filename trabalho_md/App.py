@@ -1,39 +1,23 @@
 import streamlit as st
 from streamlit_agraph import agraph, Node, Edge, Config
-
-st.title('Opa')
-
-nodes = []
-edges = []
-
-nodes.append(Node(id="A1", 
-                   size=100)
-            ) 
-
-nodes.append( Node(id="A2", 
-                   size=100) 
-            )
-nodes.append( Node(id="A5", 
-                   size=100) 
-            )
+from Assets.Sidebar import sidebar
+from Cases import Case1, Case2, Case3
 
 
-edges.append( Edge(source="A1",
-                     target="A2"
-                   )
-            ) 
+st.title('Verificador de Grafo Euleriano')
 
+st.write("""Este sistema serve para mostrar se um determinado grafo é
+       euleriano ou não, e em caso positivo, mostrar o caminho euleriano.
+       Navegue na barra lateral entre os casos de uso para ver exemplos.""")
+sidebar()
 
-config = Config(directed=False,
-                width=500, 
-                height=500, 
-            
-                # **kwargs
-                ) 
+if 'case' not in st.session_state:
+    st.session_state['case'] = 'case1'
 
+if st.session_state['case'] == 'case1':
+    Case1.case1()
+if st.session_state['case'] == 'case2':
+    Case2.case2()
+if st.session_state['case'] == 'case3':
+    Case3.case3()
 
-return_value = agraph(nodes=nodes, 
-                      edges=edges, 
-                      config=config,
-                      
-                      )
