@@ -1,67 +1,39 @@
 import pickle
-from is_ahead import is_ahead
+from mergeSort import mergeSort
+from binary_search import buscaBin
 
-with open('bins/entrada100000.bin', 'rb') as arq:
+with open('entrada.bin', 'rb') as arq:
+    """
+    Realizar a leitura do arquivo e armazenar em um dicionário 
+    e em uma lista com apenas as matrículas.
+    """
     dict_classroom = pickle.load(arq)
-    list_of_registrations = list(dict_classroom.items())
+    list_of_registrations = list(dict_classroom.keys())
 
+mergeSort(list_of_registrations, dict_classroom) #Realizar Merge Sort da lista de matrículas.
 
-# n = len(list_of_registrations)
-# for i in range(n):
-#     for j in range(0,n-1):
-#         if not is_ahead(list_of_registrations[j], list_of_registrations[j+1]):
-#             list_of_registrations[j], list_of_registrations[j+1] = list_of_registrations[j+1], list_of_registrations[j]
+notas = []
+with open('saida.txt', 'w') as arq:
+    """
+    Realizar escrita no arquivo saída.txt
+    Criar lista apenas com as notas
+    """
+    for code in list_of_registrations:
+        registration = dict_classroom[code]
 
-        
-
-
-def mergeSort(l):
-    if len(l) > 1:
-        middle = len(l) // 2
-        l_left = l[:middle]
-        l_right = l[middle:]
-
-        mergeSort(l_left)
-        mergeSort(l_right)
-
-        merge(l, l_left, l_right)
-
-
-def merge(l, l_left, l_right):
-    i = 0
-    j = 0
-    k = 0
-
-    while i < len(l_left) and j < len(l_right):
-        if is_ahead(l_left[i], l_right[j]):
-            l[k] = l_left[i]
-            i += 1
+        total_grade = sum(registration[2])
+        if (registration[3] > 0) and ((total_grade) <= 100):
+            
+            arq.write(f'{registration[0]} - {sum(registration[2])}\n')
         else:
-            l[k] = l_right[j]
-            j += 1
-        k += 1
+            
+            total_grade = sum(registration[2]) + 2
+            if total_grade == 101:
+                arq.write(f'{registration[0]} - {sum(registration[2])} + 1\n')    
+            else:
+                arq.write(f'{registration[0]} - {sum(registration[2])} + 2\n')
 
-    while i < len(l_left):
-        l[k] = l_left[i]
-        i += 1
-        k += 1
-    
-    while j < len(l_right):
-        l[k] = l_right[j]
-        j += 1
-        k += 1
 
-mergeSort(list_of_registrations)
+        notas.append(total_grade)
 
-print(list_of_registrations)
-
-for i in list_of_registrations:
-    if (i[1][3] > 0) and (sum(i[1][2]) <= 100):
-        print(f'{i[1][0]} - {sum(i[1][2])}')
-    else:
-        
-        total_grade = sum(i[1][2]) + 2
-        if total_grade == 101:
-            print(f'{i[1][0]} - {sum(i[1][2])} + 1')    
-        else:
-            print(f'{i[1][0]} - {sum(i[1][2])} + 2')
+print(buscaBin(59.5, notas)) 

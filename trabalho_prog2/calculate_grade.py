@@ -1,3 +1,4 @@
+# Funções que calculam a nota de um aluno. 
 def calculate_grade_with_bonus(grades: tuple, absences: int ) -> int:
     MAXIMUM_GRADE = 100
     grade_without_bonus = calculate_grade_without_bonus(grades)
@@ -17,5 +18,4 @@ def calculate_bonus(absences: int) -> int:
         bonus = 2
     else:
         bonus = 0
-    
     return bonus
