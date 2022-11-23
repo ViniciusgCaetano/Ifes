@@ -22,7 +22,7 @@ with open('saida.txt', 'w') as arq:
         registration = dict_classroom[code]
 
         total_grade = sum(registration[2])
-        if (registration[3] > 0) and ((total_grade) <= 100):
+        if (registration[3] > 0) or ((total_grade) >= 100):
             
             arq.write(f'{registration[0]} - {sum(registration[2])}\n')
         else:
