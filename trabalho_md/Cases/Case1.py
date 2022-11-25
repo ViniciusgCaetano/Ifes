@@ -5,9 +5,9 @@ import streamlit as st
 def case1():
     matrix = [
                 [0, 1, 0, 0],
-                [0, 0, 0, 0],
+                [1, 0, 0, 1],
                 [0, 0, 0, 1],
-                [0, 1, 0, 0]
+                [0, 1, 1, 0]
             ]
 
     col1, col2 = st.columns(2)
@@ -18,9 +18,9 @@ def case1():
         st.header("Matriz de adjacências utilizada")
         st.latex(r""" \begin{bmatrix}
                 0 & 1 & 0 & 0 \\
-                0 & 0 & 0 & 0 \\
+                1 & 0 & 0 & 1 \\
                 0 & 0 & 0 & 1 \\
-                0 & 1 & 0 & 0 
+                0 & 1 & 1 & 0 
                 \end{bmatrix}  
                 """)
         button_for_check(matrix)
