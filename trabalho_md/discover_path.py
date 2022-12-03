@@ -1,22 +1,49 @@
-from random import *
+import streamlit as st
+def discover_path(graph):
+    n = len(graph)
+    numofadj = []
+ 
+    # Pegar número de ajacências
+    for i in range(n):
+        numofadj.append(sum(graph[i]))
+ 
+    # Descobrir quantos vétices ímpares existem, e se existir, pegar ele como ponto
+    # inicial para a resolução 
+    startpoint, numofodd = 0, 0
+    for i in range(n - 1, -1, -1):
+        if (numofadj[i] % 2 == 1):
+            numofodd += 1
+            startpoint = i
 
-def discover_path(matrix):
-    even_nodes = [True if sum(line)//2==0 else False for line in matrix]
-    path_stack = []
-
-
-    if all(even_nodes):
-        start_node_index = randint(0, len(matrix))
-        start_node = matrix[start_node_index]
-    else:
-        start_node_index = even_nodes.index(False)
-        start_node = matrix[start_node_index]
-
-    if sum(start_node) == 0:
-        path_stack.append(start_node_index)
-    else:
-        neighboors = [i for i in range(len(start_node)) if start_node[i] == 1]
-
+    # inicializar variáveis
+    stack = []
+    path = []
+    cur = startpoint
+ 
+    # Procurar até encontrar um vértice que possua vizinho
+    while (len(stack) > 0 or sum(graph[cur])!= 0):
+         
+        # Caso esse vértice não possua vizinhos, será adicionado ao caminho
+        if (sum(graph[cur]) == 0):
+            path.append(cur)
+            cur = stack[-1]
+            del stack[-1]
+ 
+        # Caso possua algum vizinho, o vértice será adicionado a pilha
+        # Deletar vértice entre os dois
+        else:
+            for i in range(n):
+                if (graph[cur][i] == 1):
+                    stack.append(cur)
+                    graph[cur][i] = 0
+                    graph[i][cur] = 0
+                    cur = i
+                    break
+ 
+    # Mostrar caminho
+    final_str = ''
+    for ele in path:
+        final_str += f'A{ele+1} -> '
         
-        
-
+    final_str += f'A{cur+1}'
+    st.header(final_str)

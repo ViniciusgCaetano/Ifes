@@ -1,6 +1,7 @@
 def is_eulerian(matrix):
     print(matrix)
-    grades = [True for line in matrix if sum(line) //2 == 0]
+    grades = [True for line in matrix if sum(line) % 2 == 0]
+    print(grades)
     if (len(grades) == len(matrix)) or (len(grades) == len(matrix) - 2):
         print(grades)
         return True

@@ -32,3 +32,6 @@ def sidebar():
 
     if st.sidebar.button('Caso 3'):
         st.session_state['case'] = 'case3'
+    
+    if st.sidebar.button('Caso 4'):
+        st.session_state['case'] = 'case4'

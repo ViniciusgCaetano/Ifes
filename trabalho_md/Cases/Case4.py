@@ -2,12 +2,12 @@ from GraphGenerator import graph_generator
 from Assets.Buttons import *
 import streamlit as st
 
-def case3():
-    matrix =  [ [ 0, 1, 0, 0, 1 ],
-               [ 1, 0, 1, 1, 1 ],
+def case4():
+    matrix = [ [ 0, 1, 0, 0, 1 ],
+               [ 1, 0, 1, 1, 0 ],
                [ 0, 1, 0, 1, 0 ],
-               [ 0, 1, 1, 0, 1 ],
-               [ 1, 1, 0, 1, 0 ] ]
+               [ 0, 1, 1, 0, 0 ],
+               [ 1, 0, 0, 0, 0 ] ]
 
     col1, col2 = st.columns(2)
     with col1:
@@ -17,10 +17,11 @@ def case3():
         st.header("Matriz de adjacências utilizada")
         st.latex(r""" \begin{bmatrix}
                     0 & 1 & 0 & 0 & 1 \\
-                    1 & 0 & 1 & 1 & 1\\
+                    1 & 0 & 1 & 1 & 0 \\
                     0 & 1 & 0 & 1 & 0 \\
-                    0 & 1 & 1 & 0 & 1 \\
-                    1 & 1 & 0 & 1 & 0 \\    
+                    0 & 1 & 1 & 0 & 0 \\
+                    1 & 0 & 0 & 0 & 0 \\
+                 
                     \end{bmatrix}  """)
         button_for_check(matrix)
         button_for_path(matrix)

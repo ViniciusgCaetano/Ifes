@@ -1,5 +1,6 @@
 from GraphGenerator import graph_generator
 from Assets.Buttons import button_for_check
+from Assets.Buttons import button_for_path
 import streamlit as st
 
 def case1():
@@ -24,3 +25,4 @@ def case1():
                 \end{bmatrix}  
                 """)
         button_for_check(matrix)
+        button_for_path(matrix)

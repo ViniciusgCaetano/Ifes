@@ -1,7 +1,7 @@
 import streamlit as st
 from streamlit_agraph import agraph, Node, Edge, Config
 from Assets.Sidebar import sidebar
-from Cases import Case1, Case2, Case3
+from Cases import Case1, Case2, Case3, Case4
 
 
 st.title('Verificador de Grafo Euleriano')
@@ -20,4 +20,7 @@ if st.session_state['case'] == 'case2':
     Case2.case2()
 if st.session_state['case'] == 'case3':
     Case3.case3()
+if st.session_state['case'] == 'case4':
+    Case4.case4()
+
 
