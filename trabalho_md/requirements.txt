@@ -1,1 +1,2 @@
-streamlit_agraph 
+streamlit
+streamlit_agraph==0.0.36
