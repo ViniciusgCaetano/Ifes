@@ -7,7 +7,7 @@ def discover_path(graph):
     for i in range(n):
         numofadj.append(sum(graph[i]))
  
-    # Descobrir quantos vétices ímpares existem, e se existir, pegar ele como ponto
+    # Descobrir quantos vértices ímpares existem, e se existir, pegar ele como ponto
     # inicial para a resolução 
     startpoint, numofodd = 0, 0
     for i in range(n - 1, -1, -1):
